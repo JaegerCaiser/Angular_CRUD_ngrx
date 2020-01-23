@@ -8,7 +8,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { ProductListComponent } from './components/product-list/product-list.component';
 import { HomePage } from './pages/home/home.page';
 import { StoreModule } from '@ngrx/store';
-import { cartReducer } from './_store/modules/cart/cart.reducer';
+import { cartReducer } from './modules/cart/cart.reducer';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
 import { ProductFormComponent } from './components/product-form/product-form.component';

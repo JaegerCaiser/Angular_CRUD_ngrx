@@ -2,7 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { Store } from "@ngrx/store";
 import { ToastController } from "@ionic/angular";
 import { CartModel } from "../../models/cart.model";
-import { VinhosAction } from "../../_store/modules/cart/cart.action";
+import { VinhosAction } from "../../modules/cart/cart.action";
 import { VinhoSelector } from "../../selectors/selector.product";
 import { map } from "rxjs/operators";
 

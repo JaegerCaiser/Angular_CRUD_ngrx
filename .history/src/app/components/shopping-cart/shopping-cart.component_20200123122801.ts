@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import { Store, select } from '@ngrx/store';
 import { CartModel } from 'src/app/models/cart.model';
 import { AlertController } from '@ionic/angular';
-import {VinhosAction} from "../../_store/modules/cart/cart.action";
+import {VinhosAction} from "../../modules/cart/cart.action";
 
 @Component({
   selector: 'app-shopping-cart',

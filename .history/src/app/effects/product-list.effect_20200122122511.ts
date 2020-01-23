@@ -2,12 +2,12 @@ import { Injectable } from "@angular/core";
 import { Actions, createEffect, Effect, ofType } from "@ngrx/effects";
 import { catchError, exhaustMap, map, switchMap } from "rxjs/operators";
 import { VinhoService } from "../services/vinho.service";
-import { VinhosAction } from "../_store/modules/cart/cart.action";
+import { VinhosAction } from "../actions/cart.action";
 import { THIS_EXPR } from "@angular/compiler/src/output/output_ast";
 import { Store } from "@ngrx/store";
 import { ProductState } from "../models/product.model";
 
-@Injectable()
+@Injectable({ providedIn: "root" })
 export class ProductListEffects {
   constructor(
     private actions$: Actions,
@@ -20,13 +20,14 @@ export class ProductListEffects {
     this.actions$.pipe(
       ofType(VinhosAction.loadVinhosEffect),
       map(action => action.payload),
-      switchMap(() =>
-        this.vinhoService.getProducts().pipe(
-          map(products => {
-            this.store.dispatch(VinhosAction.add({ payload: products }));
-            return null;
-          })
-        )
+      switchMap(res =>
+        this.vinhoService
+          .getProducts()
+          .pipe(
+            map(products =>
+              this.store.dispatch(VinhosAction.add({ payload: products }))
+            )
+          )
       )
     )
   );

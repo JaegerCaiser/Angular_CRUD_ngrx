@@ -5,7 +5,7 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { VinhoService } from "../../services/vinho.service";
 import { VinhoSelector } from "../../selectors/selector.product";
 import { map } from "rxjs/operators";
-import {VinhosAction} from "../../_store/modules/cart/cart.action";
+import {VinhosAction} from "../../actions/cart.action";
 import productEdit = VinhoSelector.productEdit;
 
 @Component({

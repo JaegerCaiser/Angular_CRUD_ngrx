@@ -1,34 +1,16 @@
 import { Injectable } from "@angular/core";
 import { Actions, createEffect, Effect, ofType } from "@ngrx/effects";
-import { catchError, exhaustMap, map, switchMap } from "rxjs/operators";
+import { catchError, exhaustMap, map } from "rxjs/operators";
 import { VinhoService } from "../services/vinho.service";
-import { VinhosAction } from "../_store/modules/cart/cart.action";
-import { THIS_EXPR } from "@angular/compiler/src/output/output_ast";
-import { Store } from "@ngrx/store";
-import { ProductState } from "../models/product.model";
+import { VinhosAction } from "../actions/cart.action";
 
-@Injectable()
+@Injectable({ providedIn: "root" })
 export class ProductListEffects {
-  constructor(
-    private actions$: Actions,
-    private vinhoService: VinhoService,
-    private store: Store<ProductState>
-  ) {}
+  constructor(private actions$: Actions, private vinhoService: VinhoService) {}
 
   @Effect()
   getProductsEffect$ = createEffect(() =>
-    this.actions$.pipe(
-      ofType(VinhosAction.loadVinhosEffect),
-      map(action => action.payload),
-      switchMap(() =>
-        this.vinhoService.getProducts().pipe(
-          map(products => {
-            this.store.dispatch(VinhosAction.add({ payload: products }));
-            return null;
-          })
-        )
-      )
-    )
+    this.actions$.pipe(ofType(VinhosAction.loadVinhosEffect))
   );
 
   //   @Effect()
